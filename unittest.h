@@ -31,17 +31,12 @@
 
 #include <stdio.h>
 
-void unittest_result(const char * str, unsigned error) {
-	if (error)
-		printf("unittest `%s` had %u errors\n", str, error);
-	else
-		printf("unittest `%s` passed\n", str);
-}
+#define unittest_result(str, error) \
+	((error) ? printf("unittest `" str "` had %u errors\n", error) \
+		 : printf("unittest `" str "` passed\n"))
 
-unsigned unittest_assert(const char * str, unsigned ok) {
-	if (!ok) printf("assertion `%s` failed\n", str);
-	return !ok;
-}
+#define unittest_assert(str, ok) \
+	((ok) ? 0 : (printf("assertion `" str "` failed\n"), 1))
 
 #define unittest(str) \
 	putchar('\n'); \
