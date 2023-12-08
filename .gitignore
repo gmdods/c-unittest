@@ -12,6 +12,9 @@
 *.map
 *.exp
 
+# Macro Expansion
+*.i
+
 # Precompiled Headers
 *.gch
 *.pch
