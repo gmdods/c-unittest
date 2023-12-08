@@ -1,5 +1,6 @@
-#include "unittest.h"
 #ifndef UNITTEST_MAIN
+#include "unittest.h"
+#include <assert.h>
 #include <stdlib.h>
 #endif
 

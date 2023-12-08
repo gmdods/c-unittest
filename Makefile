@@ -4,14 +4,16 @@ CFLAGS = -Wall -Wpedantic -Wextra -Wno-unused-variable \
 DEPS = unittest.h
 FILES = unittest.c
 
+
+verbose: verbose.out
+.PHONY: verbose
+verbose.out: test.c $(DEPS) $(FILES)
+	$(C) $(CFLAGS) -DUNITTEST_VERBOSE $< -o $@ && ./$@
+
 test: test.out
 .PHONY: test
-
-test.o: test.c $(DEPS) $(FILES)
-	$(C) $(CFLAGS) -c $< -o $@
-
-test.out: test.o
-	$(C) $(CFLAGS) $? -o $@ && ./$@
+test.out: test.c $(DEPS) $(FILES)
+	$(C) $(CFLAGS) $< -o $@ && ./$@
 
 clean:
-	rm *.o *.out
+	rm *.out
