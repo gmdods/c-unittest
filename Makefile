@@ -1,6 +1,7 @@
 CC = gcc
-CFLAGS = -Wall -Wpedantic -Wextra -Wno-unused-variable \
-	-Wno-unused-function -march=native -O3
+CFLAGS = -Wall -Wpedantic -Wextra \
+	 -Wno-unused-variable -Wno-unused-parameter -Wno-unused-function \
+	 -march=native -Og -g
 DEPS = unittest.h
 FILES = unittest.c
 
