@@ -16,17 +16,22 @@
 
 #ifndef UNITTEST_MAIN
 
-#define unittest(str) void ANEW(fn)(void)
+#define unittest(name) void ANEW(fn)(void)
 #define ensure(expr) assert(expr)
 
 #else // UNITTEST_MAIN
 
-#ifndef UNITTEST_VERBOSE
-
 #include <assert.h>
 
-#define unittest(str) if (1)
+#ifndef UNITTEST_VERBOSE
+
+#define unittest(name) \
+	for (unsigned unittest_once = 0; !unittest_once || (putchar('.'), 0); \
+	     ++unittest_once)
+
 #define ensure(expr) assert(expr)
+
+#define summary() printf("\n\nAll tests passed!\n")
 
 #else // UNITTEST_VERBOSE
 
@@ -44,11 +49,13 @@
 
 #define unittest(name) \
 	putchar('\n'); \
-	for (unsigned unittest_error = 0, unittest_once = 0; \
+	for (unsigned unittest_once = 0, unittest_error = 0; \
 	     !unittest_once || (unittest_result(name, unittest_error), 0); \
 	     ++unittest_once)
 
 #define ensure(expr) unittest_error += unittest_assert(#expr, (expr))
+
+#define summary() assert(1)
 
 #endif // !UNITTEST_VERBOSE
 

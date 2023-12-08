@@ -4,7 +4,10 @@
 #include <stdlib.h>
 #endif
 
-unittest("2 + 2 == 4, not fish") { ensure(2 + 2 == 4); }
+unittest("2 + 2 == 4, not fish") {
+	ensure(2 + 2 == 4);
+	ensure(2 + 2 != 5);
+}
 
 unittest("randomly fails") {
 	int r = rand();

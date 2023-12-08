@@ -9,5 +9,7 @@ int main(int argc, const char * argv[]) {
 	srand(time(NULL));
 
 #include "unittest.c"
+
+	summary();
 	return 0;
 }
